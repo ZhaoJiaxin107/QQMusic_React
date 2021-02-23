@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import './App.css'
 
 class App extends Component {
   render () {
     return (
-      <div>QQ Music</div>
+      <div className = "title">QQ Music</div>
     )
   }
 }
