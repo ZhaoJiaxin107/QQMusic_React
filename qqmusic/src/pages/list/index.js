@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-class List extends Component {
+class MusicList extends Component {
   render () {
     return (
-      <div>列表页</div>
+      <div>歌单列表</div>
     )
   }
 }
 
-export default List
+export default MusicList
