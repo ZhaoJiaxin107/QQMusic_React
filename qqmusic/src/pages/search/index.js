@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-
+import Header from '../../components/header'
 class Search extends Component {
   render () {
     return (
-      <div>搜索页面</div>
+      <Header />
     )
   }
 }

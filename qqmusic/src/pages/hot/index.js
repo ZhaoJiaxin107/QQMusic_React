@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-
+import React, { Component, Fragment } from 'react'
+import Header from '../../components/header'
 class Hot extends Component {
   render () {
     return (
-      <div>热歌榜</div>
+      <Fragment>
+        <Header />
+      </Fragment>
     )
   }
 }

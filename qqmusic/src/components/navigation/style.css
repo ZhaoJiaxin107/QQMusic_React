@@ -3,7 +3,20 @@
     height: .44rem;
     position: absolute;
     left: 0;
-    background: greenyellow;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 .2rem;
+    box-sizing: border-box;
+}
+.nav-container a {
+    color:#333333;
+    font-size: .16rem;
+}
+.nav-container a.active{
+    color:#ff4b00;
+    font-weight: 700;
+    border-bottom: .02rem solid #ff4b00;
 }
 .nav-occupy {
     width: 100%;
