@@ -4,20 +4,39 @@ import logo from '../../assets/image/logo.jpg'
 import { Button } from 'antd'
 import { CloseCircleOutlined } from '@ant-design/icons'
 class Advertisement extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isShow: true
+        }
+        // 绑定this
+        this.closeAdvertise = this.closeAdvertise.bind(this)
+    }
+
+    closeAdvertise(){
+        this.setState({
+            isShow:false
+        })
+    }
     render() {
+        const { isShow } = this.state
         return (
             <Fragment>
-                <div className="ad-content">
-                    <div>
-                       <img src={logo} alt="logo" className="logo"></img>&nbsp;&nbsp;
+                {isShow ? (
+                    <Fragment>
+                        <div className="ad-content">
+                            <div>
+                                <img src={logo} alt="logo" className="logo"></img>&nbsp;&nbsp;
                        <span>QQ Music</span>
-                    </div>
-                    <Button danger shape="round" size="small">
-                        下载APP
+                            </div>
+                            <Button danger shape="round" size="small">
+                                下载APP
                     </Button>
-                    <CloseCircleOutlined className = "close" style = {{fontSize: '.2rem'}}/>
-                </div>
-                <div className="ad-occupy"></div>
+                            <CloseCircleOutlined className="close" style={{ fontSize: '.2rem' }} onClick={this.closeAdvertise}/>
+                        </div>
+                        <div className="ad-occupy"></div>
+                    </Fragment>
+                ) : ''}
             </Fragment >
         )
     }
