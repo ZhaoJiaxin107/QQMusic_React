@@ -9,5 +9,5 @@ import http from './http'
   3: ipad
 */
 export const getBanner = (type = 2) => {
-    return http.get('/banner?type=' + type)
+    return http.get('/banner?type=' + type).then(res => res.banners)
 }
