@@ -2,6 +2,8 @@
 
 ##### Imitating QQ Music  using  React
 
+### 如何启动项目
+
 ### 主要功能
 
 ##### 1.首页
