@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import Advertisement from '../../components/advertisement'
+import Navigation from '../../components/navigation'
 
 class Home extends Component {
   render () {
     return (
-      <div>首页</div>
+      <Fragment>
+        <Advertisement />
+        <Navigation />
+      </Fragment>
     )
   }
 }
