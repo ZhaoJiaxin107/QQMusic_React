@@ -10,10 +10,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #ffffff;
+  font:bold .15rem/1 "微软雅黑";
 }
 .logo{
   width: .3rem;
   height: .3rem;
+}
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .ad-occupy {
   width: 100%;
