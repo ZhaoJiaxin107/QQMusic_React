@@ -1,0 +1,21 @@
+.ad-content{
+  width: 100%;
+  height: .5rem;
+  background: #ff4b00;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 0 .2rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo{
+  width: .3rem;
+  height: .3rem;
+}
+.ad-occupy {
+  width: 100%;
+  height: .5rem;
+}

@@ -17,7 +17,7 @@
                                                 // f=当前屏幕宽/750*100
                     //  1rem   f?    = 320px(js自己可以获取)
                     // 3.
-                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    docEl.style.fontSize = 200 * (clientWidth / 750) + 'px';
                 }
             };
         if (!doc.addEventListener) return;
