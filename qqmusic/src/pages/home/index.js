@@ -6,14 +6,18 @@ class Home extends Component {
   constructor(props) {
     super(props)
     let isAdShow = sessionStorage.getItem('isAdShow')
+    let top = 0
     // 1表示开启广告, 2表示关闭广告
     if (!isAdShow) {
+      // 显示广告
       isAdShow = true
+      top = '.5rem'
     } else {
       isAdShow = false
     }
     this.state = {
-      isAdShow
+      isAdShow,
+      navTopStyle: { top }
     }
     // 绑定this
     this.closeAdvertise = this.closeAdvertise.bind(this)
@@ -22,15 +26,16 @@ class Home extends Component {
   closeAdvertise() {
     sessionStorage.setItem('isAdShow', 2)
     this.setState({
-      isAdShow: false
+      isAdShow: false,
+      navTopStyle: { top: 0 }
     })
   }
   render() {
-    const { isAdShow } = this.state
+    const { isAdShow, navTopStyle } = this.state
     return (
       <Fragment>
         <Advertisement isAdShow = {isAdShow} closeAdvertise = {this.closeAdvertise}/>
-        <Navigation />
+        <Navigation navTopStyle = {navTopStyle} />
       </Fragment>
     )
   }
