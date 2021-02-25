@@ -4,7 +4,7 @@ import './style.css'
 class Recommend extends Component {
     render() {
         const { recommendMusic } = this.props
-        console.log(recommendMusic)
+        // console.log(recommendMusic)
         return (
             <Fragment>
                <div className = "title">

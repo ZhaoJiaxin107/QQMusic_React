@@ -12,6 +12,7 @@
   justify-content: space-between;
   color: #ffffff;
   font:bold .15rem/1 "微软雅黑";
+  z-index: 15;
 }
 .logo{
   width: .3rem;
