@@ -8,3 +8,9 @@ import http from './http'
 export const getRecommendMusic = (num = 30) =>{
     return http.get('/personalized?limit=' + num).then (res => res.result)
 }
+/*
+获取新音乐
+*/
+export const getRecommendSong = () =>{
+    return http.get('/personalized/newsong').then(res => res.result)
+}
