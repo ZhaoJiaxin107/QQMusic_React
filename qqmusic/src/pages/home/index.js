@@ -2,40 +2,39 @@ import React, { Component, Fragment } from 'react'
 // 导入组件
 import Header from '../../components/header'
 import Banner from './components/banner'
+import Recommend from './components/recommend'
 // 引入接口文件
 import { getBanner } from '../../api/banner'
 import { getRecommendMusic } from '../../api/music'
 class Home extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      banners: []
+      banners: [],  // 轮播图数据
+      recommendMusic: [] // 推荐歌单
     }
   }
-  componentDidMount () {
-    // 获取轮播图数据
-    getBanner().then(res => {
-      // console.log(res.banners)
+  componentDidMount() {
+
+    // 用Promise.all返回多个Promise
+    Promise.all([getBanner(), getRecommendMusic(6)]).then(([banners, recommendMusic]) => {
+      console.log(recommendMusic)
       this.setState({
         ...this.state,
-        banners: res
+        banners: banners.map(item => ({ bannerId: item.bannerId, pic: item.pic })),
+        recommendMusic: recommendMusic.map(item => ({ id: item.id, pic: item.picUrl, name: item.name }))
       })
-    }).catch( err => {
-      console.log(err)
-    })
-    // 获取推荐歌单
-    getRecommendMusic(9).then(res => {
-      console.log(res)
     })
   }
 
   render() {
-    const { banners } = this.state
+    const { banners, recommendMusic } = this.state
     return (
       <Fragment>
         <Header />
-        <Banner banners = { banners }/>
+        <Banner banners={banners} />
+        <Recommend recommendMusic={recommendMusic} />
       </Fragment>
     )
   }
