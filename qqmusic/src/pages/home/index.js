@@ -19,7 +19,7 @@ class Home extends Component {
 
     // 用Promise.all返回多个Promise
     Promise.all([getBanner(), getRecommendMusic(6)]).then(([banners, recommendMusic]) => {
-      console.log(recommendMusic)
+      // console.log(recommendMusic)
       this.setState({
         ...this.state,
         banners: banners.map(item => ({ bannerId: item.bannerId, pic: item.pic })),
