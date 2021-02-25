@@ -21,6 +21,9 @@
     display: flex;
     flex-wrap: wrap;
 }
+.recommend-list a {
+  color: #333333;
+}
 .recommend-item {
     width: 30%;
     height: 50%;

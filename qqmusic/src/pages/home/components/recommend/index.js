@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import './style.css'
 
 class Recommend extends Component {
@@ -13,10 +14,10 @@ class Recommend extends Component {
                </div>
                <div className = "recommend-list">
                    {recommendMusic.map(item => (
-                       <div className = "recommend-item" key = {item.id}>
+                       <Link to={'/list/' + item.id} className = "recommend-item" key = {item.id}>
                            <img src = {item.pic} alt = "recommendlist"/>
                            <div className = "name">{item.name}</div>
-                       </div>
+                       </Link>
                    ))
                    }
                </div>

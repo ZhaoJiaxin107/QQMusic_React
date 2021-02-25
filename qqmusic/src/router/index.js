@@ -13,8 +13,8 @@ class MusicRouter extends Component {
           <Switch>
               <Route path = "/" exact component = {Home}></Route>
               <Route path = "/hot" exact component = {Hot}></Route>
-              <Route path = "/list" exact component = {MusicList}></Route>
-              <Route path = "/play" exact component = {Play}></Route>
+              <Route path = "/list/:id" exact component = {MusicList}></Route>
+              <Route path = "/play/:id" exact component = {Play}></Route>
               <Route path = "/search" exact component = {Search}></Route>
           </Switch>
       </Router>
