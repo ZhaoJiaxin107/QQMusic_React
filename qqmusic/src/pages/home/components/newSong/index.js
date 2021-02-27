@@ -22,7 +22,7 @@ class NewSong extends Component {
                                 <div className="song-info">
                                     <h1 className="song-name">{item.name}</h1>
                                     <p className="song-desc">
-                                        {item.singer.join(',')}&nbsp;{item.album.join()}
+                                        {item.singer.join('/')}&nbsp;{item.album.length > 0 ? '-' + item.album.join() : ''}
                                     </p>
                                 </div>
                                 <PlayCircleOutlined style={{ fontSize: '.2rem', color: '#999999' }} />

@@ -31,7 +31,7 @@ class Hot extends Component {
   }
   componentDidMount() {
     getHotSong().then(res => {
-      console.log(res.info)
+      // console.log(res.info)
       this.setState({
         list: mergeSong(res.list),
         info: res.info

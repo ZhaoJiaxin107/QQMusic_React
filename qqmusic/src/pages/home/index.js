@@ -37,7 +37,7 @@ class Home extends Component {
     getRecommendMusic(6),
     getNewSong()]).then(([banners, recommendMusic, newSong]) => {
       // console.log(newSong)
-      console.log(mergeSong(newSong))
+      // console.log(mergeSong(newSong))
       this.setState({
         ...this.state,
         banners: banners.map(item => ({ bannerId: item.bannerId, pic: item.pic })),
