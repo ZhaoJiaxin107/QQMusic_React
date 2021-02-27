@@ -1,0 +1,26 @@
+.song-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .song-info {
+    width: 90%;
+    height: 100%;
+  }
+  .song-info .song-name{
+    line-height: .3rem;
+    color: #333333;
+    font-size: .16rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .song-info .song-desc{
+     line-height: .2rem;
+     font-size: .12rem;
+     color: #888888;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+  }

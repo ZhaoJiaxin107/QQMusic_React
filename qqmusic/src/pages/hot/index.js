@@ -4,8 +4,23 @@ import { Link } from 'react-router-dom'
 import { PlayCircleOutlined } from '@ant-design/icons'
 import Header from '../../components/header'
 import { getHotSong } from '../../api/music'
+import './style.css'
+// 引入公共方法
+function mergeSong(songList) {
+  const res = []
+  songList.forEach(item => {
+    res.push({
+      id: item.id,
+      name: item.name,
+      singer: item.artists.map(item => item.name),
+      album: item.album.name
+    })
+  })
+  return res
+}
+
 class Hot extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       list: []
@@ -15,7 +30,7 @@ class Hot extends Component {
     getHotSong().then(res => {
       console.log(res)
       this.setState({
-        list: res.list
+        list: mergeSong(res.list)
       })
     })
   }
@@ -28,11 +43,12 @@ class Hot extends Component {
           dataSource={this.state.list}
           renderItem={item => (
             <List.Item>
-              <Link to={"/play/"} className="song-item">
+              <Link to={"/play/" + item.id} className="song-item">
                 <div className="song-info">
                   <h1 className="song-name">{item.name}</h1>
                   <p className="song-desc">
-
+                    {item.singer.join(",")}&nbsp;
+                    {item.album}
                   </p>
                 </div>
                 <PlayCircleOutlined style={{ fontSize: '.2rem', color: '#999999' }} />
