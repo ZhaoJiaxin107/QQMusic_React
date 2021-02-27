@@ -12,4 +12,15 @@ module.exports = function (app) {
             ws: true, // 启用websocket
         }
     ));
+    app.use(createProxyMiddleware('/qq',
+        {
+            target: 'http://music.163.com/api',
+            pathRewrite: {
+                '^/qq': '',
+            },
+            changeOrigin: true,
+            secure: false, // 是否验证证书
+            ws: true, // 启用websocket
+        }
+    ));
 };
