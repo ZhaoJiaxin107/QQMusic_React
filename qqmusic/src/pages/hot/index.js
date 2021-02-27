@@ -8,8 +8,9 @@ import './style.css'
 // 引入公共方法
 function mergeSong(songList) {
   const res = []
-  songList.forEach(item => {
+  songList.forEach((item, index) => {
     res.push({
+      index: index + 1, 
       id: item.id,
       name: item.name,
       singer: item.artists.map(item => item.name),
@@ -44,11 +45,12 @@ class Hot extends Component {
           renderItem={item => (
             <List.Item>
               <Link to={"/play/" + item.id} className="song-item">
+                <span className = "song-index">{item.index / 10 < 1 ? '0' + item.index : item.index}</span>
                 <div className="song-info">
                   <h1 className="song-name">{item.name}</h1>
                   <p className="song-desc">
-                    {item.singer.join(",")}&nbsp;
-                    {item.album}
+                    {item.singer.join("/")}&nbsp;
+                    {item.album ? '-' + item.album : ''}
                   </p>
                 </div>
                 <PlayCircleOutlined style={{ fontSize: '.2rem', color: '#999999' }} />

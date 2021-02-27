@@ -17,8 +17,9 @@ export const getNewSong = () => {
 
 // 获取热歌榜
 export const getHotSong = () => {
-    return http.get('/top/playlist/highquality?limit=1&cat=华语').then(res => {
-        const data = res.playlists[0]
+    return http.get('/top/playlist/highquality?cat=华语').then(res => {
+        let index = Math.floor(Math.random() * 20)
+        const data = res.playlists[index]
         return http2.get('/playlist/detail?id=' + data.id).then(r => ({
             list: r.result.tracks,
             info: {

@@ -1,8 +1,13 @@
-.song-item {
+  .song-item {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .song-index{
+    font: bold .2rem "黑体";
+    color: #333333;
+    padding-right: .1rem;
   }
   .song-info {
     width: 90%;
