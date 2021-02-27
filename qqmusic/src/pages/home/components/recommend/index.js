@@ -10,7 +10,7 @@ class Recommend extends Component {
             <Fragment>
                <div className = "title">
                    <i></i>
-                   推荐歌单
+                   每日推荐
                </div>
                <div className = "recommend-list">
                    {recommendMusic.map(item => (
