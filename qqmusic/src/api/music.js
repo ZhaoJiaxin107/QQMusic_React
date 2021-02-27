@@ -20,13 +20,17 @@ export const getHotSong = () => {
     return http.get('/top/playlist/highquality?cat=华语').then(res => {
         let index = Math.floor(Math.random() * 20)
         const data = res.playlists[index]
+        let date = new Date(data.trackUpdateTime)
+        let month =  date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth() + 1
+        let day = date.getDate() < 10 ? '0' + date.getDate(): date.getDate()
         return http2.get('/playlist/detail?id=' + data.id).then(r => ({
             list: r.result.tracks,
             info: {
                 id: data.id,
                 name: data.name,
                 img: data.coverImgUrl,
-                time: data.trackUpdateTime
+                month,
+                day
             }
         }))
     }).catch(err => {

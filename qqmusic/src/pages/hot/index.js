@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Image } from 'antd';
 import { List } from 'antd'
 import { Link } from 'react-router-dom'
 import { PlayCircleOutlined } from '@ant-design/icons'
@@ -24,14 +25,16 @@ class Hot extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      list: []
+      list: [],
+      info: {}
     }
   }
   componentDidMount() {
     getHotSong().then(res => {
-      console.log(res)
+      console.log(res.info)
       this.setState({
-        list: mergeSong(res.list)
+        list: mergeSong(res.list),
+        info: res.info
       })
     })
   }
@@ -39,6 +42,15 @@ class Hot extends Component {
     return (
       <Fragment>
         <Header />
+        <div className = "banner">
+          <Image
+            width = '3.75rem'
+            height = "1.5rem"
+            src = {this.state.info.img}
+          />
+          <span className = "title">{this.state.info.name}</span>
+          <span className = "time">更新日期:{this.state.info.month}月{this.state.info.day}日</span>
+        </div>
         <List
           size="small"
           dataSource={this.state.list}

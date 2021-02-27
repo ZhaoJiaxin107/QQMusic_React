@@ -1,3 +1,22 @@
+  .banner {
+      width: 3.75rem;
+      height: 1.5rem;
+      position: relative;
+  }
+  .banner .title {
+      position: absolute;
+      top: .1rem;
+      left: .15rem;
+      color: #EDDEDB;
+      font-style: italic;
+      font-size: .18rem;
+  }
+  .banner .time {
+    position: absolute;
+    bottom: .1rem;
+    left: .25rem;
+    color: #EDDEDB;
+  }
   .song-item {
     width: 100%;
     display: flex;
