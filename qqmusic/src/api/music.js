@@ -40,3 +40,20 @@ export const getHotSong = () => {
     // 需要转发到 music.163.com上面，不是使用本地
     // return http2.get('/playlist/detail?id=6625598735')
 }
+
+// 获取搜索建议
+export const getSearchSuggest = (keyword) => {
+    return http.get('/search/suggest?keywords=' + keyword).then(res => {
+      res = res.result
+      let data = []
+      if(res.artists && res.artists.length > 0){
+          const arr = res.artists.map(item => item.name)
+          data = [...data, ...arr]
+      }
+      if(res.playlists && res.playlists.length > 0){
+        const arr = res.playlists.map(item => item.name)
+        data = [...data, ...arr]
+      }
+      return data
+    })
+}
