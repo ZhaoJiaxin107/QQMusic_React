@@ -62,7 +62,8 @@ class Search extends Component {
         onClearKeyWord = {this.onClearKeyWord}
         onSearch = {this.onSearch} />
         <div className = "content">
-          <SearchList keywordList = {keywordList}/>
+
+          {keyword !== '' ? <SearchList keywordList = {keywordList} keyword = {keyword}/>: ''}
         </div>
       </Fragment>    
     )

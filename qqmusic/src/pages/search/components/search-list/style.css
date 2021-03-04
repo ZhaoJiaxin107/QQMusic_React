@@ -3,5 +3,8 @@
     height: 100%;
     position: absolute;
     left: 0;
-    background-color: aquamarine;
+}
+.search-list-header{
+    color: #507daf;
+    padding: 0 .2rem;
 }
