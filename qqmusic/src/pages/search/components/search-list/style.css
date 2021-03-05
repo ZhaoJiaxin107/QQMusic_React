@@ -7,4 +7,14 @@
 .search-list-header{
     color: #507daf;
     padding: 0 .2rem;
+    margin-top: -.2rem;
+    box-sizing: border-box;
+}
+.search-list-item {
+  padding: 0 .2rem;
+  color: #666;
+  box-sizing: border-box;
+}
+.search-list-item span{
+    margin-left: .1rem;
 }

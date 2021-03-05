@@ -13,6 +13,7 @@ class Search extends Component {
     this.onKeywordChange = this.onKeywordChange.bind(this)
     this.onClearKeyWord = this.onClearKeyWord.bind(this)
     this.onSearch = this.onSearch.bind(this)
+    this.onSearchItemClick = this.onSearchItemClick.bind(this)
   }
   onKeywordChange (e) {
     const keyword = e.target.value
@@ -26,24 +27,50 @@ class Search extends Component {
     })
   }
   // 清空搜索框的内容
+  // 清空搜索框的结果并隐藏
   onClearKeyWord () {
     this.setState({
       ...this.state,
       keyword: '',
-      keywordList: [] // 搜索列表
+      keywordList: [], // 搜索列表
+      showKeywordList: false // 即将要显示搜索结果组件，所以需要隐藏搜索列表
     })
   }
   // 进行搜索
   onSearch () {
     console.log('Search', this.state.keyword)
+    this.setState({
+      showKeywordList: false // 即将要显示搜索结果组件，所以需要隐藏搜索列表
+    })
   }
 
   getSearchList () {
+    if(this.state.keyword === ''){
+      // 如果搜索关键词为空, 就不需要调用接口
+      // 清空搜索列表的数据
+      this.setState({
+        keywordList: [],
+        showKeywordList: false
+      })
+      return
+    }
     getSearchSuggest(this.state.keyword).then(res => {
       // console.log(res)
       this.setState({
-        keywordList: res
+        keywordList: res,
+        showKeywordList: true // 获取搜索页面, 显示结果
       })
+    })
+  }
+
+  // 点击搜索列表的项, 改变keyword的值, 然后触发搜索功能
+  onSearchItemClick (value) {
+    console.log("on search item click", value)
+    this.setState({
+      keyword: value
+    }, () => {
+      // 当keyword设置成功之后, 调用搜索
+      this.onSearch()
     })
   }
   componentDidMount () {
@@ -53,7 +80,7 @@ class Search extends Component {
   }
 
   render () {
-    const { keyword, keywordList } = this.state
+    const { keyword, keywordList, showKeywordList } = this.state
     return (
       <Fragment>
         <Header />
@@ -62,8 +89,7 @@ class Search extends Component {
         onClearKeyWord = {this.onClearKeyWord}
         onSearch = {this.onSearch} />
         <div className = "content">
-
-          {keyword !== '' ? <SearchList keywordList = {keywordList} keyword = {keyword}/>: ''}
+          {showKeywordList !== '' ? <SearchList keywordList = {keywordList} keyword = {keyword} onSearchItemClick={this.onSearchItemClick}/>: ''}
         </div>
       </Fragment>    
     )
