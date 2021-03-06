@@ -57,3 +57,8 @@ export const getSearchSuggest = (keyword) => {
       return data
     })
 }
+
+// 获取热搜数据
+export const getHotSearch = () => {
+    return http.get('/search/hot').then(res => res.result.hots.map(item => item.first))
+}

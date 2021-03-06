@@ -2,13 +2,17 @@ import React, { Component, Fragment } from 'react'
 import Header from '../../components/header'
 import SearchInput from './components/search-input'
 import SearchList from './components/search-list'
-import { getSearchSuggest } from '../../api/music'
+import HotSearch from './components/hot-search'
+import { getSearchSuggest, getHotSearch } from '../../api/music'
 import './style.css'
 class Search extends Component {
   constructor(props){
     super(props)
     this.state = {
-      keyword: '' // 搜索关键词
+      keyword: '', // 搜索关键词
+      keywordList: [], // 搜索列表
+      showKeywordList: false,
+      hotSearchList: [] // 热门搜索
     }
     this.onKeywordChange = this.onKeywordChange.bind(this)
     this.onClearKeyWord = this.onClearKeyWord.bind(this)
@@ -42,6 +46,29 @@ class Search extends Component {
     this.setState({
       showKeywordList: false // 即将要显示搜索结果组件，所以需要隐藏搜索列表
     })
+    // 处理历史搜索
+    this.setHistorySearch()
+  }
+
+  setHistorySearch () {
+    // 设置历史搜索, 把当前搜索的关键词(this.state.keyword)存储到本地存储(localStorage)
+    // 倒序显示, 最新的搜索应该显示在列表的最前面 unshift
+    // 判断当前的搜索关键词是否在历史搜索中
+    // 如果不存在, 把搜索关键词添加到历史搜索的最前面
+    // 如果存在, 把之前的关键词删除, 然后再把搜索关键词添加到历史搜索的最前面
+    const { keyword } = this.state
+    const history = JSON.parse(localStorage.getItem('history') || '[]')
+    console.log(history, Array.isArray(history))
+    const index = history.findIndex(item => item === keyword)
+    if(index > -1){
+      // 存在
+      history.splice(index, 1)
+      // keyword放在最前面
+    }
+    history.unshift(keyword)
+    // console.log('history--------', history)
+    // 把处理之后的历史搜索, 存储到本地存储
+    localStorage.setItem('history', JSON.stringify(history))
   }
 
   getSearchList () {
@@ -74,13 +101,17 @@ class Search extends Component {
     })
   }
   componentDidMount () {
-    // getSearchSuggest('a').then(res => {
-    //   console.log(res)
-    // })
+    // 获取热门搜索
+    getHotSearch().then(res => {
+      console.log(res)
+      this.setState({
+        hotSearchList: res
+      })
+    })
   }
 
   render () {
-    const { keyword, keywordList, showKeywordList } = this.state
+    const { keyword, keywordList, showKeywordList, hotSearchList } = this.state
     return (
       <Fragment>
         <Header />
@@ -89,7 +120,8 @@ class Search extends Component {
         onClearKeyWord = {this.onClearKeyWord}
         onSearch = {this.onSearch} />
         <div className = "content">
-          {showKeywordList !== '' ? <SearchList keywordList = {keywordList} keyword = {keyword} onSearchItemClick={this.onSearchItemClick}/>: ''}
+          {showKeywordList ? <SearchList keywordList = {keywordList} keyword = {keyword} onSearchItemClick={this.onSearchItemClick}/>: ''}
+          <HotSearch hotSearchList= {hotSearchList} onSearchItemClick={this.onSearchItemClick}/>
         </div>
       </Fragment>    
     )

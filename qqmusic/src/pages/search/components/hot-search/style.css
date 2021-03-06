@@ -1,0 +1,23 @@
+.hot-search-container{
+    width: 100%;
+    padding: 0 .2rem;
+    box-sizing: border-box;
+}
+.hot-search-title {
+    line-height: .4rem;
+    color: #666;
+}
+.hot-search-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.hot-search-item {
+    height: .32rem;
+    padding: 0 .15rem;
+    border: 1px solid #f5f5f5;
+    border-radius: .16rem;
+    line-height: .32rem;
+    margin-right: .06rem;
+    margin-bottom: .06rem;
+}
