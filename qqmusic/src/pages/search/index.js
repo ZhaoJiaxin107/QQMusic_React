@@ -3,6 +3,7 @@ import Header from '../../components/header'
 import SearchInput from './components/search-input'
 import SearchList from './components/search-list'
 import HotSearch from './components/hot-search'
+import SearchHistory from './components/search-history'
 import { getSearchSuggest, getHotSearch } from '../../api/music'
 import './style.css'
 class Search extends Component {
@@ -12,7 +13,8 @@ class Search extends Component {
       keyword: '', // 搜索关键词
       keywordList: [], // 搜索列表
       showKeywordList: false,
-      hotSearchList: [] // 热门搜索
+      hotSearchList: [], // 热门搜索
+      history: [] // 历史搜索记录
     }
     this.onKeywordChange = this.onKeywordChange.bind(this)
     this.onClearKeyWord = this.onClearKeyWord.bind(this)
@@ -108,10 +110,15 @@ class Search extends Component {
         hotSearchList: res
       })
     })
+    // 获取历史搜索
+    const history = JSON.parse(localStorage.getItem('history') || '[]')
+    this.setState({
+      history
+    })
   }
 
   render () {
-    const { keyword, keywordList, showKeywordList, hotSearchList } = this.state
+    const { keyword, keywordList, showKeywordList, hotSearchList, history } = this.state
     return (
       <Fragment>
         <Header />
@@ -122,6 +129,7 @@ class Search extends Component {
         <div className = "content">
           {showKeywordList ? <SearchList keywordList = {keywordList} keyword = {keyword} onSearchItemClick={this.onSearchItemClick}/>: ''}
           <HotSearch hotSearchList= {hotSearchList} onSearchItemClick={this.onSearchItemClick}/>
+          <SearchHistory history = {history} onSearchItemClick={this.onSearchItemClick}/>
         </div>
       </Fragment>    
     )
